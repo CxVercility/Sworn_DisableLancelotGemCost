@@ -19,13 +19,11 @@ namespace Sworn_GemNoGoldCost
 [HarmonyPatch(typeof(CurrencyManager), "AddGold")]
 class Patch
 {
-    static Boolean hasRun = false;
     static bool Prefix(int amount)
     {
-        if (!hasRun && amount == -300)
+        if (amount == -300)
         {
             MelonLogger.Msg("skipped");
-            hasRun = true;
             return false;
         }
         return true;
